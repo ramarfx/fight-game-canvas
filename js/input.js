@@ -1,5 +1,6 @@
 export class InputHandler {
-    constructor() {
+    constructor(game) {
+        this.game = game
         this.keys = []
         window.addEventListener('keydown', (e) => {
             if ((e.key == 'ArrowDown' ||
@@ -10,8 +11,7 @@ export class InputHandler {
             ) && this.keys.indexOf(e.key) === -1) {
                 //index of -1 artinya jika elemen tidak berada pada array tsb
                 this.keys.push(e.key)
-            }
-            console.log(e.key, this.keys);
+            } else if (e.key === 'd') this.game.debug = !this.game.debug
         })
         window.addEventListener('keyup', (e) => {
             if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key == 'ArrowLeft' ||
@@ -19,7 +19,6 @@ export class InputHandler {
                 e.key == 'Enter') {
                 this.keys.splice(this.keys.indexOf(e.key), 1)
             }
-            console.log(e.key, this.keys);
         })
     }
 }
